@@ -1,0 +1,56 @@
+/*TOP HEADER*/
+.gb-content{
+  overflow: hidden;
+}
+.is-sticky{
+  position: absolute;
+  width: 100%;
+  z-index: 9999;
+  .gb-header{
+    background: $color-white;
+    .gb-main-menu .cssmenu > ul > li > a{
+      color: $color-1;
+    }
+  }
+  .gb-header-between{
+    background: $color-white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.39);
+  }
+  @media screen and (max-width: 991px) {
+    visibility:  hidden;
+  }
+}
+.sticky-wrapper{
+  width: 100%;
+  position: absolute;
+  @media screen and (max-width: 991px) {
+    position: relative !important;
+    height: 99px !important;
+  }
+}
+.gb-header{
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  border-bottom: 1px solid $color-white;
+  padding: 0 30px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.39);
+  @media screen and  (max-width: 991px){
+    position: relative;
+    background: $color-main;
+  }
+  .gb-header-logo{
+    width: 180px;
+    float: left;
+    padding: 8px 0;
+    h1{
+      a{
+        display: block;
+      }
+    }
+  }
+  .gb-header-logon-text{
+    width: calc(100% - 180px);
+    float:  right;
+  }
+}

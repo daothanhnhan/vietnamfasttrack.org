@@ -1,0 +1,2 @@
+<?php $name_brcrm = 'FAQS'; ?>
+<?php include_once DIR_QUESTIONANDANSWER."MS_QUESTIONANDANSWER_VIETNAMFASTTRACK_0002.php";?>

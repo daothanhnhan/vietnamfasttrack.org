@@ -1,0 +1,19 @@
+.gb-sidebar-tag{
+  .widget-content{
+    ul{
+      li{
+        display:  inline-block;
+        margin-bottom: 5px;
+        a{
+          display: block;
+          font-size: 14px;
+          line-height: 1.86;
+          text-align: left;
+          color: $color-grey;
+          border: 1px solid $color-grey;
+          padding: 8px 15px;
+        }
+      }
+    }
+  }
+}

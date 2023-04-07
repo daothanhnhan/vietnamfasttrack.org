@@ -1,0 +1,54 @@
+.gb-home-newest{
+  background: #f1f1f1;
+  padding: 50px 0;
+  .gb-home-newest-img{
+    overflow: hidden;
+    border: 2px solid $color-main;
+    padding: 10px;
+    img{
+      width: 100%;
+      height:  auto;
+      transition:  all 0.5s;
+      &:hover{
+        transform: scale(1.2);
+      }
+    }
+  }
+  .gb-home-newest-text{
+    padding-top: 60px;
+    .entry-tile{
+      h3{
+        a{
+          display: block;
+          font-size: 24px;
+          color: $color-1;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .entry-excerpt{
+      margin: 20px 0;
+      p{
+        color: $color-grey;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+    .entry-btn-xemthem{
+      a{
+        display:  inline-block;
+        min-width: 150px;
+        border: 2px solid $color-main;
+        background: $color-main;
+        color: $color-white;
+        padding: 15px 20px;
+        text-align: center;
+        transition: all 0.5s;
+        &:hover{
+          color: $color-main;
+          background: transparent;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.gb-other-book-online{
+  padding: 50px 0;
+  .airport-list-section{
+    ul{
+      li{
+        a{
+          display:  block;
+          text-align: justify;
+          color: $color-1;
+          font-size: 16px;
+          line-height: 1.6;
+          transition: all 0.5s;
+          &:hover{
+            color: $color-main;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.gb-home-services-location{
+  background: #f4f4f4;
+  padding: 50px 0;
+  .vnfasttrack-title{
+    text-align: center;
+  }
+  ul{
+    text-align: center;
+    li{
+      display:  inline-block;
+      &:first-child{
+        a{
+          border-left:  none;
+        }
+      }
+      a{
+        display: block;
+        vertical-align: middle;
+        font-size: 18px;
+        border-left: solid 1px #666;
+        padding: 0 10px 0 13px;
+        text-align: center;
+        color: $color-2;
+        transition:  all 0.5s;
+        &:hover{
+          color: $color-main;
+        }
+      }
+    }
+  }
+  .viewallairports{
+    text-align: center;
+    margin-top: 30px;
+    a{
+      font-size: 20px;
+      text-decoration: underline;
+      color: $color-2;
+      transition:  all 0.5s;
+      &:hover{
+        color: $color-main;
+      }
+    }
+  }
+}

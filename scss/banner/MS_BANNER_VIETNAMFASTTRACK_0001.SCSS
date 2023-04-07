@@ -1,0 +1,60 @@
+.gb-banner-home{
+  background: url("../images/39VIETNAM.jpg") no-repeat;
+  background-size: cover;
+  height: 700px;
+  padding-top: 140px;
+  background-position: center center;
+  @media screen and (max-width: 599px){
+    height: 550px;
+  }
+  .gb-banner-home-left{
+    h2{
+      font-size: 60px;
+      margin-bottom: 0;
+      color: $color-white;
+      text-shadow: 2px 2px 2px $color-1;
+      @media screen and (max-width: 991px) {
+        font-size: 48px;
+      }
+    }
+    h3{
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: $color-main;
+      text-shadow: 2px 2px 2px $color-1;
+      @media screen and (max-width: 991px) {
+        font-size: 36px;
+      }
+    }
+    p{
+      font-size: 22px;
+      line-height: 1.5;
+      color: $color-white;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 2px $color-1;
+      @media screen and (max-width: 991px) {
+        font-size: 18px;
+      }
+    }
+    .gb-banner-home-left-btn{
+      a{
+        display:  inline-block;
+        padding: 15px 25px;
+        font-size: 16px;
+        color: $color-white;
+        margin-right: 10px;
+        &.cta2{
+          background-color: $color-main;
+        }
+        &.cta1{
+          background-color: $color-main1;
+        }
+      }
+    }
+  }
+  .gb-banner-home-right{
+    @media screen and (max-width: 599px) {
+      display:  none;
+    }
+  }
+}

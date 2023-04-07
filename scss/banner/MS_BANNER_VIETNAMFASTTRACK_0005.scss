@@ -1,0 +1,63 @@
+/*DO YOU WANT TO SELL A CAR*/
+.gb-banner-bookonline{
+  background: url("../images/1.jpg") no-repeat;
+  background-size: cover;
+  height: 700px;
+  background-position: center center;
+  padding-top: 175px;
+  .hero-text{
+    h2{
+      font-size: 60px;
+      margin-bottom: 0;
+      color: #FFF;
+      text-shadow: 2px 2px 2px $color-1;
+    }
+    h3{
+      font-size: 48px;
+      margin-bottom: 25px;
+      color: $color-main;
+      text-shadow: 2px 2px 2px $color-1;
+    }
+    p{
+      font-size: 22px;
+      color: #FFF;
+      text-shadow: 2px 2px 2px $color-1;
+      margin-bottom: 30px;
+    }
+    .form-group{
+      select{
+        height: 45px;
+        width: 100%;
+      }
+      .booking-button{
+        background: $color-main;
+        box-shadow:  none;
+        text-shadow: none;
+        border: 2px solid $color-main;
+        padding: 10px 20px;
+        color: $color-white;
+        font-weight:  600;
+        transition:  all 0.5s;
+        &:hover{
+          color: $color-main;
+          background:  transparent;
+        }
+      }
+      .cta2{
+        background: $color-main;
+        box-shadow:  none;
+        text-shadow: none;
+        border: 2px solid $color-main;
+        padding: 10px 20px;
+        font-size: 13px;
+        color: $color-white;
+        font-weight:  600;
+        transition:  all 0.5s;
+        &:hover{
+          color: $color-main;
+          background:  transparent;
+        }
+      }
+    }
+  }
+}

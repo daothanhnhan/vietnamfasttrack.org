@@ -1,0 +1,1 @@
+<?php include_once DIR_INTRODUCE."MS_INTRODUCE_VIETNAMFASTTRACK_0005.php";?>

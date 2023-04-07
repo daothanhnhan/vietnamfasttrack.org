@@ -1,0 +1,806 @@
+/*
+Plugin Name: Ground Booker National Booking Tool
+Plugin URI: http://example.com
+Description: Ground Booker (Asia Fast Track) tool for country specific airport services bookings
+Version: 1.0
+Author: Clive Verrall
+Author URI: http://www.cliveverrall.com
+*/
+@CHARSET "ISO-8859-1";
+
+/******************* Modify theme **************************/
+@media only screen and (max-width: 1000px) {
+    .container_inner  {
+        width: 100% !important;
+    }
+
+}
+.content .container, body {
+    background-color: #fff !important;
+}
+
+/*** Breadcrumbs courtesy http://jsfiddle.net/H7J94/5/ ****/
+
+.wizard a {
+    padding: 10px 12px 10px;
+    margin-right: 5px;
+    background: #efefef;
+    position: relative;
+    display: inline-block;
+}
+.wizard a:before {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid #fff;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+}
+.wizard a:after {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid #efefef;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -20px;
+    z-index: 2;
+}
+.wizard a:first-child:before,
+.wizard a:last-child:after {
+    border: none;
+}
+.wizard a:first-child {
+    -webkit-border-radius: 4px 0 0 4px;
+       -moz-border-radius: 4px 0 0 4px;
+            border-radius: 4px 0 0 4px;
+}
+.wizard a:last-child {
+    -webkit-border-radius: 0 4px 4px 0;
+       -moz-border-radius: 0 4px 4px 0;
+            border-radius: 0 4px 4px 0;
+}
+.wizard .badge {
+    margin: 0 5px 0 18px;
+    position: relative;
+    top: -1px;
+}
+.wizard a:first-child .badge {
+    margin-left: 0;
+}
+.wizard .current {
+    background: #007ACC;
+    color: #fff;
+}
+.wizard .current:after {
+    border-left-color: #007ACC;
+}
+
+.wizard {
+	margin-bottom: 20px;
+}
+
+
+/* ff anti-aliasing bug - http://coderwall.com/p/tpmsta */
+.mywizard li {
+    position: relative;
+    background: #f5f5f5;
+    padding-right: 30px;
+    padding-left: 5px;
+}
+
+.mywizard li a:after, .mywizard li a:before {
+    left: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.mywizard li a:after {
+    border-color: rgba(245, 245, 245, 0);
+    border-left-color: #f5f5f5;
+    border-width: 20px;
+    top: 50%;
+    margin-top: -20px;
+    margin-left: -30px;
+}
+
+.mywizard li a:before {
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #fff;
+    border-width: 30px;
+    top: 50%;
+    margin-top: -30px;
+    margin-left: -30px;
+}
+.mywizard li .badge {
+    vertical-align: text-bottom;
+    padding-top: 3px;
+}
+
+.wizard ul {
+	list-style: none;
+	width: 100%;
+	display: inline-block;
+	font-size: 0;
+}
+
+@media only screen and (max-width: 650px) {
+    .nbt-breadcrumbs {
+        display: none;
+    }
+}
+
+/**** Booking Wizard Common Page Elements ****/
+.nbt-page-structure {
+	/* width: 90%; */
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.nbt-help-popover {
+	font-size: 150%;
+    color: #FAA523;
+}
+
+.nbt-help-popover:hover {
+	font-size: 150%;
+    background-color: #FAA523;
+    color: white;
+}
+
+.popover-header {
+    padding:8px 14px;
+    background-color:#f7f7f7;
+    border-bottom:1px solid #ebebeb;
+    -webkit-border-radius:5px 5px 0 0;
+    -moz-border-radius:5px 5px 0 0;
+    border-radius:5px 5px 0 0;
+}
+.popover-title {
+    margin:0;
+    padding:0;
+    background-color:transparent;
+    border:none;
+}
+
+/* Center a large nbt button */
+.nbt-center-button-lg {
+     margin-left: auto;
+     margin-right: auto;
+     width: 15em;
+}
+
+.nbt-center-button-170 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 170px;
+}
+
+.nbt-center-button {
+    margin-left: auto;
+    margin-right: auto;
+    width: 10em;
+}
+
+.nbt-button-action {
+    background-color: #228B22 !important;
+}
+
+.nbt-button-danger {
+    background-color: #DC143C !important;
+}
+
+@media only screen and (max-width: 500px) {
+    .nbt-center-button {
+        width: 100px;
+    }
+}
+
+.nbt-no-horizontal-margin {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.nbt-button {
+    background: #00497F;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: lighter;
+    margin-top: 0;
+    padding: 13px;
+    text-align: center;
+    width: 7em;
+    border: 2px outset buttonface;
+    margin-bottom: 100px;
+}
+
+.nbt-button-lg {
+    background: #00497F;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: lighter;
+    margin-top: 0;
+    padding: 13px;
+    text-align: center;
+    width: 12em;
+    border: 2px outset buttonface;
+}
+
+a.button.nbt-button {
+	width: 10em;
+}
+
+.nbt-button:hover {
+	background: #0e91ef;
+}
+
+@media only screen and (max-width: 500px) {
+    .nbt-button, .nbt-button-lg {
+        font-size: 10px;
+        padding: 1px;
+    }
+    .review-remove-order-button, .review-flip-order-button {
+        font-size: 14px;
+    }
+}
+
+
+.booking-page-controls .col-ms-6, .booking-page-controls .col-ms-3, .booking-page-controls .col-ms-4, .booking-page-controls .col-ms-8 {
+        float: left;
+        clear: none;
+}
+
+
+.booking-page-controls {
+	margin-top: 20px;
+	padding-bottom: 40px;
+}
+
+.addon_content .form-horizontal .form-group {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+ .cost-summary-table th {
+ 	text-align: left;
+ }
+ 
+ .alert-lead-time, .alert-dep-time. .alert-entry-time {
+ 	margin-top: 5px;
+ 	margin-bottom: 5px;
+ }
+
+.nbt-alert {
+    background-color: #f79468 !important;
+}
+
+
+/*** Category selection page ***/
+
+#country-title {
+	margin-bottom: 30px;
+}
+
+.category-submit-form .form-group {
+	margin-left: 0 !important;
+}
+
+.category-submit-form select {
+	max-width: 30em;
+}
+.category-submit {
+	width: 150px;
+	border-radius: 20px;
+}
+
+.category-submit-button {
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 4px;
+	background-color: #FAA523;
+}
+
+.category-submit-button:hover {
+	background-color: white;
+}
+
+.category-submit-disabled {
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 4px;
+	background-color: #EFEFEF;
+	overflow: hidden;
+	color: #e5e5e5;
+}
+
+.category-submit-disabled h3 {
+	color: #e5e5e5;
+}
+
+
+
+.category-body {
+	min-height: inherit;
+	margin-left: 10px;
+}
+
+.category-button-wrap {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 200px;
+}
+
+
+
+.category-submit-button li, .category-submit-disabled li {
+	list-style: none;
+	text-align: left;
+}
+
+button#meet-assist, button#limousine, button#lounge {
+    font-weight: 700;
+    height: auto;
+    max-height: 120px;
+    padding: 8px 25px;
+    display: inline-block;
+    color: #FFF;
+    background-color: #FAA523;;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: all 0.5s ease;
+}
+
+@media only screen and (max-width: 768px) {
+    button#meet-assist h3, button#limousine h3, button#lounge h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .category-header {
+        height: 1em;
+    }
+    .category-submit {
+        height: 20px;
+    }
+}
+@media only screen and (min-width: 769px) {
+    button#meet-assist h3, button#limousine h3, button#lounge h3 {
+        font-size: 24px;
+    }
+    button#meet-assist, button#limousine, button#lounge {
+        border-radius: 20px;
+    }
+    .category-submit-button h3, .category-submit-disabled h3 {
+        margin-top: 20px;
+    }
+    .category-header {
+        height: 3.5em;
+    }
+    .category-submit {
+        height: 75px;
+    }
+}
+
+/** Basket **/
+.basket-main {
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+/** Core Services **/
+
+.nbt-core-service-active {
+    display: block;
+}
+
+.nbt-core-service-hidden {
+    display: none;
+}
+
+.core-service-form {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+.core-service-form input, .core-service-form select {
+	width: 90%;
+}
+
+.nbt_service_note {
+    margin-top: 7px;
+    width: 90%;
+}
+
+/** Review page **/
+.review-terms {
+	font-size: 11px;
+	font-family: arial;
+}
+
+.review-order-table td {
+	text-align: left;
+}
+
+.review-order-table th {
+	text-align: right;
+}
+
+@media only screen and (max-width: 500px) {
+    .review-order-table {
+        font-size: 12px;
+    }
+}
+
+.review-remove-order-button, .review-flip-order-button {
+    float: right;
+    margin-right: 5px;
+}.review-remove-order-button {
+    width: 10em;
+}
+.review-flip-order-button {
+    width: 200px;
+}
+
+
+
+/*** Booking Summary Panel ***/
+.booking-summary {
+	font-size: 11px;
+}
+
+.booking-summary p, .booking-summary h3 {
+	font-size: 11px;
+}
+
+.booking-discount span, .coupon-summary span {
+    float: right;
+}
+
+.booking-discount th {
+    padding-right: 5px;
+}
+
+.nbt-right {
+    float: right;
+}
+
+/**** Bookers details page ******/
+#coupon_validation {
+    background: #00497F;
+    color: #fff;
+}
+
+.nbt-fare-key-terms a {
+    color: #007ACC;
+    float: right;
+    font-size: 80%;
+    text-decoration: underline;
+}
+
+.nbt-fare-more-link {
+    font-style: italic;
+    color: #007ACC;
+}
+
+.nbt-fare-type-name {
+    font-weight: bold !important;
+}
+
+.nbt-fare-more-area {
+    display: none;
+}
+
+/**** JQuery UI Timepicker ********/
+/* Without this adjustment the numbers fall outside the table cells */
+.ui-timepicker-table td a {
+    padding: 0 !important;
+}
+
+/******************************* AJAX Loading Indicator ****************************************/
+#nbt-ajax-loader {
+    display: none;
+    width: 50px;
+    z-index: 99999;
+    position: absolute;
+    left: 0;
+    right:0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 40%;
+}
+
+#nbt-ajax-loader img {
+    width: 50px;
+}
+
+/***************************** Pricing Calculator ***********************************************/
+.nbt-calculator-pane {
+    margin-top: 20px;
+}
+
+.nbt-calculator-inner {
+    width: 90%;
+    min-width: 200px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nbt-calculator-inner p {
+    font-size: 12px;
+    text-align: center;
+    color: rgb(129,129,129)
+}
+
+#nbt-calculator-check-price-btn {
+    background: #faa523;
+    color: black;
+}
+
+.nbt-calculator-price-area p {
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(129,129,129);
+    margin-bottom: 5px;
+}
+
+.nbt-calculator-price-area p:last-child {
+    margin-bottom: 15px;
+}
+
+#nbt-calculator-price {
+    background-color: #FAA523;
+    color: black;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.nbt-calculator-controls {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}
+
+.nbt-calculator-controls .nbt-button-lg {
+    margin-right: 20px;
+    background: #FAA523;
+    font-weight: bold;
+}
+
+.nbt-calculator-alternative-quote {
+    background-color: lightsteelblue;
+    border-width: 3px;
+    border-color: blue;
+    border-style: solid;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nbt-calculator-quote-control {
+    margin-left: auto;
+    margin-right: auto;
+    width: 240px;
+}
+
+.nbt-calculator-text {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: justify;
+}
+
+#book-now {
+    margin-bottom: 40px;
+}
+
+.nbt-calculator-display-result {
+    display: none;
+}
+
+.nbt-calculator-display-result .form-group {
+    margin-bottom: 5px;
+}
+
+/***************************** Service Descriptions ***********************************************/
+.nbt-description-pane {
+    margin-top: 20px;
+}
+
+.nbt-description-inner {
+    width: 90%;
+    min-width: 200px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#nbt-description-check-price-btn {
+    background-color: #00497F;
+    color: white;
+}
+
+.nbt-description-result-area {
+    width: 97.5%;
+    min-width: 215px;
+    max-width: 470px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nbt-description-inner label {
+    font-size: 14px;
+}
+
+.nbt-description-controls {
+    margin-left: auto;
+    margin-right: auto;
+    width: 220px;
+}
+
+.nbt-description-controls .nbt-button-lg {
+    margin-right: 20px;
+    background: #FAA523;
+    font-weight: bold;
+}
+
+.nbt-description-text {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: justify;
+    font-size: 14px;
+}
+
+#nbt-service-description-display-area-outer {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(204,204,204);
+   border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: rgb(238,238,238);
+    width: 100%;
+    min-height: 4em;
+    max-height: 30em;
+    overflow-y: auto;
+}
+
+#nbt-service-description-display-area {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.nbt-description-result-area h4 a {
+    font-size: 14px;
+}
+
+.nbt-icon-right {
+    float: right;
+}
+
+.nbt-description-img {
+    width: 100%;
+    height: auto;
+    float: left;
+}
+
+#nbt-service-description-display-area p,
+#nbt-service-description-display-area li
+{
+    font-size: 14px;
+}
+
+/**
+  * Custom Bootstrap 3 grid for 480-767px layout
+  * Author: Iftakhar Hasan
+  *
+  * A new set of column classes (with class prefix .col-ms- ) for Bootstrap 3
+  * to make Medium Small grids for supporting 480-767px
+  *
+  * This will push the default Bootstrap 3 Extra Small column (class prefix .col-xs- )
+  * to support 1-479px instead of 1-767px
+  */
+
+.col-ms-1,
+.col-ms-2,
+.col-ms-3,
+.col-ms-4,
+.col-ms-5,
+.col-ms-6,
+.col-ms-7,
+.col-ms-8,
+.col-ms-9,
+.col-ms-10,
+.col-ms-11,
+.col-ms-12 {position:relative; padding-left:15px; padding-right:15px;}
+@media (min-width: 480px) and (max-width: 767px) {
+    .container {max-width:748px;}
+    .col-ms-1,
+    .col-ms-2,
+    .col-ms-3,
+    .col-ms-4,
+    .col-ms-5,
+    .col-ms-6,
+    .col-ms-7,
+    .col-ms-8,
+    .col-ms-9,
+    .col-ms-10,
+    .col-ms-11 {float:left;}
+    .col-ms-1 {width:8.33333333%;}
+    .col-ms-2 {width:16.66666667%;}
+    .col-ms-3 {width:25%;}
+    .col-ms-4 {width:33.33333333%;}
+    .col-ms-5 {width:41.66666667%;}
+    .col-ms-6 {width:50%;}
+    .col-ms-7 {width:58.33333333%;}
+    .col-ms-8 {width:66.66666667%;}
+    .col-ms-9 {width:75%;}
+    .col-ms-10 {width:83.33333333%;}
+    .col-ms-11 {width:91.66666667%;}
+    .col-ms-12 {width:100%;}
+    .col-ms-pull-0 {right:auto;}
+    .col-ms-pull-1 {right:8.33333333%;}
+    .col-ms-pull-2 {right:16.66666667%;}
+    .col-sm-pull-3 {right:25%;}
+    .col-sm-pull-4 {right:33.33333333%;}
+    .col-sm-pull-5 {right:41.66666667%;}
+    .col-sm-pull-6 {right:50%;}
+    .col-sm-pull-7 {right:58.33333333%;}
+    .col-ms-pull-8 {right:66.66666667%;}
+    .col-ms-pull-9 {right:75%;}
+    .col-ms-pull-10 {right:83.33333333%;}
+    .col-ms-pull-11 {right:91.66666667%;}
+    .col-ms-pull-12 {right:100%;}
+    .col-ms-push-0 {left:auto;}
+    .col-ms-push-1 {left:8.33333333%;}
+    .col-ms-push-2 {left:16.66666667%;}
+    .col-sm-push-3 {left:25%;}
+    .col-sm-push-4 {left:33.33333333%;}
+    .col-sm-push-5 {left:41.66666667%;}
+    .col-sm-push-6 {left:50%;}
+    .col-sm-push-7 {left:58.33333333%;}
+    .col-ms-push-8 {left:66.66666667%;}
+    .col-ms-push-9 {left:75%;}
+    .col-ms-push-10 {left:83.33333333%;}
+    .col-ms-push-11 {left:91.66666667%;}
+    .col-ms-push-12 {left:100%;}
+    .col-ms-offset-0 {margin-left:0;}
+    .col-ms-offset-1 {margin-left:8.33333333%;}
+    .col-ms-offset-2 {margin-left:16.66666667%;}
+    .col-ms-offset-3 {margin-left:25%;}
+    .col-ms-offset-4 {margin-left:33.33333333%;}
+    .col-ms-offset-5 {margin-left:41.66666667%;}
+    .col-ms-offset-6 {margin-left:50%;}
+    .col-ms-offset-7 {margin-left:58.33333333%;}
+    .col-ms-offset-8 {margin-left:66.66666667%;}
+    .col-ms-offset-9 {margin-left:75%;}
+    .col-ms-offset-10 {margin-left:83.33333333%;}
+    .col-ms-offset-11 {margin-left:91.66666667%;}
+    .col-ms-offset-12 {margin-left:100%;}
+}

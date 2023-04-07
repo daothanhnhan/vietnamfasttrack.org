@@ -1,0 +1,49 @@
+.gb-home-questionandamswer{
+  background-color: #F4F4F4;
+  padding: 50px 0;
+  .gb-home-questionandamswer-item{
+    background-color: $color-white;
+    border-bottom: 7px solid $color-main;
+    padding: 20px 30px;
+    text-align: center;
+    @media screen and (max-width: 991px) {
+      margin-bottom: 30px;
+    };
+    .item-icons{
+      display: block;
+      width: 100px;
+      margin:  0 auto;
+    }
+    .item-text{
+      strong{
+        display: block;
+        font-size: 20px;
+        color: #444;
+        margin: 10px 0;
+        text-align: center;
+      }
+      p{
+        text-align: center;
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 15px;
+      }
+      .item-btn{
+        display: block;
+        padding: 15px 20px;
+        border: 2px solid $color-main;
+        background-color: $color-main;
+        text-align: center;
+        color: $color-white;
+        font-size: 18px;
+        border-radius: 30px;
+        transition:  all 0.5s;
+        width: 100%;
+        &:hover{
+          color: $color-main;
+          background:  transparent;
+        }
+      }
+    }
+  }
+}

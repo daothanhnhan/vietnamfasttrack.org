@@ -1,0 +1,20 @@
+.footer-main-content{
+  padding: 50px 0;
+  border-top: 1px solid #ddd;
+  background: $color-1;
+  .vnfasttrack-title{
+    color: $color-main;
+    margin-bottom:  0;
+    text-align: center;
+  }
+}
+
+.copyright-area{
+  background: $color-main;
+  overflow: hidden;
+  padding: 15px 0;
+  p{
+    color: #fff;
+    text-align: center;
+  }
+}

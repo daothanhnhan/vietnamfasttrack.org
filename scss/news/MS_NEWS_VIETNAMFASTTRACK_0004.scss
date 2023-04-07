@@ -1,0 +1,135 @@
+.gb-tintuc-page{
+  @media screen and (max-width: 991px) {
+    margin-bottom: 50px;
+  }
+}
+.gb-tintuc{
+  padding: 50px 0;
+}
+.gb-events-lists-content-item{
+  background: #ffffff;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  transition: all 0.5s;
+  border-bottom: 1px dashed $color-grey;
+}
+
+.gb-events-lists-item-right{
+  padding: 30px 0;
+  padding-right: 30px;
+  @media screen and (max-width: 991px) {
+    padding: 20px;
+  }
+  ul{
+    margin: 0;
+    padding: 0;
+    li{
+      list-style-type: none;
+    }
+  }
+  .gb-event-item-time{
+    float: left;
+    margin-right: 30px;
+    width: 100px;
+    height: 120px;
+    border: solid 2px $color-main;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 991px) {
+      width: 80px;
+      height: 100px;
+      margin-right: 20px;
+    }
+    ul{
+      text-align: center;
+      li{
+        span{
+          font-size: 60px;
+          font-weight: bold;
+          line-height: 0.5;
+          text-align: center;
+          color: $color-main;
+          margin: 0;
+        }
+        &:last-child{
+          span{
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.67;
+            text-align: center;
+            color: $color-main;
+          }
+        }
+      }
+    }
+  }
+
+  .gb-event-item-info{
+    padding-left: 130px;
+    padding-bottom: 30px;
+    @media screen and (max-width: 991px) {
+      padding-left: 100px;
+    }
+    h2{
+      margin: 0;
+      padding-bottom: 22px;
+      a{
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 1;
+        text-align: left;
+        color: #333333;
+        text-decoration: none;
+        transition: all 0.5s ;
+        &:hover{
+          color: $color-main;
+          transition: all 0.5s ;
+        }
+        @media screen and (max-width: 991px) {
+          font-size: 24px;
+        }
+      }
+    }
+    ul{
+      li{
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 2.14;
+        text-align: left;
+        color: #7b7b7b;
+        &:last-child{
+          color: $color-main;
+        }
+      }
+    }
+  }
+  .gb-events-item-text{
+    p{
+      font-size: 14px;
+      line-height: 1.86;
+      text-align: left;
+      color: #7b7b7b;
+      margin-bottom: 25px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  }
+  .gb-events-item-btn{
+    float: right;
+    a{
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.88;
+      color: $color-main;
+      text-decoration: none;
+      transition: all 0.5s ;
+      &:hover{
+        color: #333;
+        transition: all 0.5s ;
+      }
+    }
+  }
+}

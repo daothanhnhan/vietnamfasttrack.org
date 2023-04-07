@@ -1,0 +1,1 @@
+<?php include DIR_OTHER."MS_OTHER_VIETNAMFASTTRACK_0002.php";?>
